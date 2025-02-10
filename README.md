@@ -1,5 +1,5 @@
 ## Hi there 👋
-
+Hi, I'm Nishant Gangwar a OS enthusiast with a love for Linux and everything under the hood. I am a MERN STACK DVELOPER ,DEV-OPS enthusiast 🚀 from India. . Outside of programming, I'm passionate about gaming, continuous learning, and enjoying good cinema. 
 <!--
 **nishant625/nishant625** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
