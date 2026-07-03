@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nishant625 :: ~/</title>
+<style>
+  :root{
+    --bg: #0b0f0a;
+    --green: #33ff66;
+    --green-dim: #1c9e3f;
+    --amber: #ffb000;
+    --scan-opacity: 0.06;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin:0; padding:0;
+    background: var(--bg);
+    color: var(--green);
+    font-family: "Courier New", ui-monospace, "Consolas", monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* CRT screen wrapper */
+  .crt{
+    position: relative;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+    background:
+      radial-gradient(ellipse at center, rgba(20,40,20,0.4) 0%, rgba(0,0,0,0.9) 100%);
+    animation: flicker 6s infinite;
+  }
+
+  .crt::before{
+    content:"";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,var(--scan-opacity)) 0px,
+      rgba(255,255,255,var(--scan-opacity)) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .crt::after{
+    content:"";
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  @keyframes flicker{
+    0%, 100% { filter: brightness(1); }
+    92% { filter: brightness(1); }
+    93% { filter: brightness(0.85); }
+    94% { filter: brightness(1.05); }
+    95% { filter: brightness(0.95); }
+    96% { filter: brightness(1); }
+  }
+
+  .wrap{
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .titlebar{
+    border: 1px solid var(--green-dim);
+    padding: 6px 14px;
+    display:flex;
+    justify-content: space-between;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--green-dim);
+    margin-bottom: 24px;
+  }
+
+  .titlebar span.dot{ color: var(--amber); }
+
+  pre.ascii{
+    color: var(--green);
+    font-size: 10px;
+    line-height: 1.15;
+    margin: 0 0 28px;
+    text-shadow: 0 0 6px rgba(51,255,102,0.55);
+    overflow-x: auto;
+  }
+
+  .line{
+    white-space: pre-wrap;
+    line-height: 1.6;
+    margin: 0 0 2px;
+    text-shadow: 0 0 4px rgba(51,255,102,0.35);
+  }
+
+  .prompt{ color: var(--amber); }
+  .path{ color: #7fdcff; }
+  .dim{ color: var(--green-dim); }
+
+  .boot{
+    margin-bottom: 18px;
+  }
+
+  .boot .line{
+    opacity: 0;
+    animation: appear 0.05s forwards;
+  }
+
+  @keyframes appear{ to { opacity: 1; } }
+
+  .section{
+    margin-top: 34px;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform: translateY(6px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  h2{
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--amber);
+    margin: 0 0 12px;
+    text-shadow: 0 0 6px rgba(255,176,0,0.4);
+  }
+
+  h2::before{ content: "// "; color: var(--green-dim); }
+
+  ul.rows{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.rows li{
+    margin-bottom: 8px;
+    line-height: 1.55;
+  }
+
+  ul.rows li::before{
+    content: "> ";
+    color: var(--amber);
+  }
+
+  .stack{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .chip{
+    border: 1px solid var(--green-dim);
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--green);
+    background: rgba(51,255,102,0.04);
+  }
+
+  a{
+    color: #7fdcff;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(127,220,255,0.5);
+  }
+  a:hover{
+    color: var(--amber);
+    border-bottom-color: var(--amber);
+  }
+
+  .links{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .cursor{
+    display:inline-block;
+    width: 9px;
+    height: 16px;
+    background: var(--green);
+    margin-left: 4px;
+    vertical-align: -3px;
+    animation: blink 1s steps(1) infinite;
+    box-shadow: 0 0 6px rgba(51,255,102,0.8);
+  }
+
+  @keyframes blink{
+    50%{ opacity: 0; }
+  }
+
+  footer{
+    margin-top: 60px;
+    font-size: 11px;
+    color: var(--green-dim);
+    border-top: 1px dashed var(--green-dim);
+    padding-top: 14px;
+  }
+
+  @media (max-width: 600px){
+    pre.ascii{ font-size: 7px; }
+  }
+</style>
+</head>
+<body>
+<div class="crt">
+  <div class="wrap">
+
+    <div class="titlebar">
+      <span>nishant625@github <span class="dot">●</span> zsh</span>
+      <span>[ 80x24 ]</span>
+    </div>
+
+    <pre class="ascii">
+ _   _ ___ ____  _   _    _    _   _ _____
+| \ | |_ _/ ___|| | | |  / \  | \ | |_   _|
+|  \| || |\___ \| |_| | / _ \ |  \| | | |
+| |\  || | ___) |  _  |/ ___ \| |\  | | |
+|_| \_|___|____/|_| |_/_/   \_\_| \_| |_|
+    </pre>
+
+    <div class="boot" id="boot"></div>
+
+    <div class="section" id="sec-about" style="animation-delay:0.1s">
+      <h2>whoami</h2>
+      <p class="line">Nishant Gangwar — OS enthusiast, Linux tinkerer, always
+poking under the hood. MERN stack developer with a growing
+DevOps habit, based in India.</p>
+      <p class="line dim">Outside the terminal: gaming, chasing rabbit holes
+of new tech, and good cinema.</p>
+    </div>
+
+    <div class="section" id="sec-stack" style="animation-delay:0.25s">
+      <h2>stack --list</h2>
+      <div class="stack">
+        <span class="chip">Java</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">MERN</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Linux</span>
+        <span class="chip">DevOps</span>
+      </div>
+    </div>
+
+    <div class="section" id="sec-now" style="animation-delay:0.4s">
+      <h2>status --current</h2>
+      <ul class="rows">
+        <li>Always learning something new — currently deep in AWS, cloud, and Linux internals</li>
+        <li>Open to collaborating on solid open source projects</li>
+        <li>Happy to talk software dev, DevOps, or your favorite distro</li>
+      </ul>
+    </div>
+
+    <div class="section" id="sec-contact" style="animation-delay:0.55s">
+      <h2>contact --reach-me</h2>
+      <div class="links">
+        <span class="line">> twitter/x &nbsp;<a href="https://x.com/nishaaaaanttttt" target="_blank" rel="noopener">@nishaaaaanttttt</a></span>
+        <span class="line">> linkedin &nbsp;&nbsp;<a href="https://www.linkedin.com/in/nishant-gangwar-904937287/" target="_blank" rel="noopener">/in/nishant-gangwar</a></span>
+        <span class="line">> github &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/nishant625" target="_blank" rel="noopener">@nishant625</a></span>
+      </div>
+    </div>
+
+    <footer>
+      <span class="path">~/nishant625</span> <span class="dim">$</span> echo "thanks for stopping by"<span class="cursor"></span>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+  const bootLines = [
+    "[ OK ] Booting nishant625.github.io ...",
+    "[ OK ] Mounting /dev/portfolio ...",
+    "[ OK ] Loading user profile: nishant625",
+    "[ OK ] Starting session... welcome."
+  ];
+
+  const bootEl = document.getElementById('boot');
+  let delay = 0;
+  bootLines.forEach((text, i) => {
+    const p = document.createElement('p');
+    p.className = 'line';
+    p.textContent = text;
+    p.style.animationDelay = delay + 's';
+    bootEl.appendChild(p);
+    delay += 0.25;
+  });
+</script>
+</body>
+</html>
