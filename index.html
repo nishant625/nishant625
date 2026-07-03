@@ -3,303 +3,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nishant625 :: ~/</title>
+<title>Nishant Gangwar — Software Engineer</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
   :root{
-    --bg: #0b0f0a;
-    --green: #33ff66;
-    --green-dim: #1c9e3f;
-    --amber: #ffb000;
-    --scan-opacity: 0.06;
+    --bg: #ece7dd;
+    --panel: #e1dbc7;
+    --ink: #17140f;
+    --ink-soft: #6b6659;
+    --rule: #cdc5ab;
+    --moss: #43593f;
   }
 
   *{ box-sizing: border-box; }
 
-  html, body{
-    margin:0; padding:0;
+  body{
+    margin: 0;
     background: var(--bg);
-    color: var(--green);
-    font-family: "Courier New", ui-monospace, "Consolas", monospace;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* CRT screen wrapper */
-  .crt{
-    position: relative;
-    min-height: 100vh;
-    padding: 40px 20px 80px;
-    background:
-      radial-gradient(ellipse at center, rgba(20,40,20,0.4) 0%, rgba(0,0,0,0.9) 100%);
-    animation: flicker 6s infinite;
-  }
-
-  .crt::before{
-    content:"";
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: repeating-linear-gradient(
-      to bottom,
-      rgba(255,255,255,var(--scan-opacity)) 0px,
-      rgba(255,255,255,var(--scan-opacity)) 1px,
-      transparent 2px,
-      transparent 3px
-    );
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .crt::after{
-    content:"";
-    position: fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
-    pointer-events: none;
-    z-index: 6;
-  }
-
-  @keyframes flicker{
-    0%, 100% { filter: brightness(1); }
-    92% { filter: brightness(1); }
-    93% { filter: brightness(0.85); }
-    94% { filter: brightness(1.05); }
-    95% { filter: brightness(0.95); }
-    96% { filter: brightness(1); }
-  }
-
-  .wrap{
-    max-width: 780px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .titlebar{
-    border: 1px solid var(--green-dim);
-    padding: 6px 14px;
-    display:flex;
-    justify-content: space-between;
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: var(--green-dim);
-    margin-bottom: 24px;
-  }
-
-  .titlebar span.dot{ color: var(--amber); }
-
-  pre.ascii{
-    color: var(--green);
-    font-size: 10px;
-    line-height: 1.15;
-    margin: 0 0 28px;
-    text-shadow: 0 0 6px rgba(51,255,102,0.55);
-    overflow-x: auto;
-  }
-
-  .line{
-    white-space: pre-wrap;
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
     line-height: 1.6;
-    margin: 0 0 2px;
-    text-shadow: 0 0 4px rgba(51,255,102,0.35);
   }
 
-  .prompt{ color: var(--amber); }
-  .path{ color: #7fdcff; }
-  .dim{ color: var(--green-dim); }
-
-  .boot{
-    margin-bottom: 18px;
+  .layout{
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 980px;
+    margin: 0 auto;
+    min-height: 100vh;
   }
 
-  .boot .line{
-    opacity: 0;
-    animation: appear 0.05s forwards;
+  /* ---------- sidebar ---------- */
+  aside{
+    padding: 70px 32px 40px 24px;
+    border-right: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    align-self: start;
   }
 
-  @keyframes appear{ to { opacity: 1; } }
-
-  .section{
-    margin-top: 34px;
-    opacity: 0;
-    animation: fadeIn 0.6s ease forwards;
+  aside h1{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
   }
 
-  @keyframes fadeIn{
-    from{ opacity:0; transform: translateY(6px); }
-    to{ opacity:1; transform: translateY(0); }
-  }
-
-  h2{
+  aside .role{
     font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--amber);
-    margin: 0 0 12px;
-    text-shadow: 0 0 6px rgba(255,176,0,0.4);
+    color: var(--ink-soft);
+    margin-bottom: 36px;
   }
 
-  h2::before{ content: "// "; color: var(--green-dim); }
+  aside nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
 
-  ul.rows{
+  aside nav a{
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  aside nav a:hover{
+    color: var(--moss);
+  }
+
+  aside .social{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  aside .social a{
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  aside .social a:hover{
+    color: var(--moss);
+  }
+
+  /* ---------- main ---------- */
+  main{
+    padding: 70px 32px 100px;
+  }
+
+  section{
+    margin-bottom: 60px;
+    scroll-margin-top: 40px;
+  }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+
+  .lede{
+    font-size: 19px;
+    line-height: 1.6;
+    max-width: 50ch;
+    margin: 0;
+  }
+
+  .lede b{
+    font-weight: 600;
+  }
+
+  /* signature: system info card */
+  .sysinfo{
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 22px 26px;
+    margin-top: 28px;
+    max-width: 460px;
+  }
+
+  .sysinfo .field{
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sysinfo .field:last-child{
+    border-bottom: none;
+  }
+
+  .sysinfo .field .k{
+    color: var(--ink-soft);
+  }
+
+  .sysinfo .field .v{
+    color: var(--ink);
+  }
+
+  .status-dot{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--moss);
+    margin-right: 7px;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse{
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  /* stack */
+  .stack-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 40px;
+    max-width: 460px;
+  }
+
+  .stack-grid div{
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+  }
+
+  .stack-grid span.tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  /* now list */
+  ul.now{
     list-style: none;
     margin: 0;
     padding: 0;
+    max-width: 500px;
   }
 
-  ul.rows li{
-    margin-bottom: 8px;
-    line-height: 1.55;
+  ul.now li{
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
   }
 
-  ul.rows li::before{
-    content: "> ";
-    color: var(--amber);
+  ul.now li:first-child{
+    border-top: 1px solid var(--rule);
   }
 
-  .stack{
-    display:flex;
+  ul.now li::before{
+    content: "—  ";
+    color: var(--ink-soft);
+  }
+
+  /* contact */
+  .contact-grid{
+    display: flex;
+    gap: 40px;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
   }
 
-  .chip{
-    border: 1px solid var(--green-dim);
-    padding: 3px 10px;
-    font-size: 12px;
-    color: var(--green);
-    background: rgba(51,255,102,0.04);
-  }
-
-  a{
-    color: #7fdcff;
+  .contact-grid a{
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 1px dashed rgba(127,220,255,0.5);
-  }
-  a:hover{
-    color: var(--amber);
-    border-bottom-color: var(--amber);
+    font-size: 15px;
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 2px;
   }
 
-  .links{
-    display:flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .cursor{
-    display:inline-block;
-    width: 9px;
-    height: 16px;
-    background: var(--green);
-    margin-left: 4px;
-    vertical-align: -3px;
-    animation: blink 1s steps(1) infinite;
-    box-shadow: 0 0 6px rgba(51,255,102,0.8);
-  }
-
-  @keyframes blink{
-    50%{ opacity: 0; }
+  .contact-grid a:hover{
+    color: var(--moss);
+    border-color: var(--moss);
   }
 
   footer{
-    margin-top: 60px;
-    font-size: 11px;
-    color: var(--green-dim);
-    border-top: 1px dashed var(--green-dim);
-    padding-top: 14px;
+    padding: 24px 32px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-family: 'IBM Plex Mono', monospace;
+    grid-column: 1 / -1;
   }
 
-  @media (max-width: 600px){
-    pre.ascii{ font-size: 7px; }
+  @media (max-width: 720px){
+    .layout{ grid-template-columns: 1fr; }
+    aside{
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 40px 24px 30px;
+    }
+    main{ padding: 40px 24px 80px; }
+    .stack-grid{ grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-<div class="crt">
-  <div class="wrap">
+<div class="layout">
 
-    <div class="titlebar">
-      <span>nishant625@github <span class="dot">●</span> zsh</span>
-      <span>[ 80x24 ]</span>
+  <aside>
+    <h1>Nishant<br>Gangwar</h1>
+    <div class="role">Software Engineer</div>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#now">Currently</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="social">
+      <a href="https://github.com/nishant625">GitHub</a>
+      <a href="https://www.linkedin.com/in/nishant-gangwar-904937287/">LinkedIn</a>
+      <a href="https://x.com/nishaaaaanttttt">X / Twitter</a>
     </div>
+  </aside>
 
-    <pre class="ascii">
- _   _ ___ ____  _   _    _    _   _ _____
-| \ | |_ _/ ___|| | | |  / \  | \ | |_   _|
-|  \| || |\___ \| |_| | / _ \ |  \| | | |
-| |\  || | ___) |  _  |/ ___ \| |\  | | |
-|_| \_|___|____/|_| |_/_/   \_\_| \_| |_|
-    </pre>
+  <main>
 
-    <div class="boot" id="boot"></div>
+    <section id="about">
+      <div class="eyebrow">About</div>
+      <p class="lede">
+        I build software across the stack — <b>Java, Node.js, and
+        PostgreSQL</b> on the backend, the <b>MERN</b> stack on the
+        front — and I care more than most about what's running
+        underneath it. Based in India, spending increasing time on
+        <b>AWS</b> and <b>Linux</b>.
+      </p>
 
-    <div class="section" id="sec-about" style="animation-delay:0.1s">
-      <h2>whoami</h2>
-      <p class="line">Nishant Gangwar — OS enthusiast, Linux tinkerer, always
-poking under the hood. MERN stack developer with a growing
-DevOps habit, based in India.</p>
-      <p class="line dim">Outside the terminal: gaming, chasing rabbit holes
-of new tech, and good cinema.</p>
-    </div>
-
-    <div class="section" id="sec-stack" style="animation-delay:0.25s">
-      <h2>stack --list</h2>
-      <div class="stack">
-        <span class="chip">Java</span>
-        <span class="chip">Node.js</span>
-        <span class="chip">PostgreSQL</span>
-        <span class="chip">JavaScript</span>
-        <span class="chip">MERN</span>
-        <span class="chip">AWS</span>
-        <span class="chip">Linux</span>
-        <span class="chip">DevOps</span>
+      <div class="sysinfo">
+        <div class="field"><span class="k">host</span><span class="v">nishant625</span></div>
+        <div class="field"><span class="k">os</span><span class="v">Linux, by preference</span></div>
+        <div class="field"><span class="k">focus</span><span class="v">MERN + DevOps</span></div>
+        <div class="field"><span class="k">status</span><span class="v"><span class="status-dot"></span>open to collaborate</span></div>
       </div>
-    </div>
+    </section>
 
-    <div class="section" id="sec-now" style="animation-delay:0.4s">
-      <h2>status --current</h2>
-      <ul class="rows">
-        <li>Always learning something new — currently deep in AWS, cloud, and Linux internals</li>
-        <li>Open to collaborating on solid open source projects</li>
-        <li>Happy to talk software dev, DevOps, or your favorite distro</li>
+    <section id="stack">
+      <div class="eyebrow">Stack</div>
+      <div class="stack-grid">
+        <div>Java <span class="tag">backend</span></div>
+        <div>Node.js <span class="tag">backend</span></div>
+        <div>PostgreSQL <span class="tag">database</span></div>
+        <div>MERN <span class="tag">frontend</span></div>
+        <div>JavaScript <span class="tag">language</span></div>
+        <div>AWS <span class="tag">cloud</span></div>
+        <div>Linux <span class="tag">systems</span></div>
+        <div>DevOps <span class="tag">practice</span></div>
+      </div>
+    </section>
+
+    <section id="now">
+      <div class="eyebrow">Currently</div>
+      <ul class="now">
+        <li>Going deeper into AWS and cloud infrastructure</li>
+        <li>Learning Linux internals, past the surface level</li>
+        <li>Looking to collaborate on well-scoped open source projects</li>
       </ul>
-    </div>
+    </section>
 
-    <div class="section" id="sec-contact" style="animation-delay:0.55s">
-      <h2>contact --reach-me</h2>
-      <div class="links">
-        <span class="line">> twitter/x &nbsp;<a href="https://x.com/nishaaaaanttttt" target="_blank" rel="noopener">@nishaaaaanttttt</a></span>
-        <span class="line">> linkedin &nbsp;&nbsp;<a href="https://www.linkedin.com/in/nishant-gangwar-904937287/" target="_blank" rel="noopener">/in/nishant-gangwar</a></span>
-        <span class="line">> github &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/nishant625" target="_blank" rel="noopener">@nishant625</a></span>
+    <section id="contact">
+      <div class="eyebrow">Contact</div>
+      <div class="contact-grid">
+        <a href="https://github.com/nishant625">GitHub</a>
+        <a href="https://www.linkedin.com/in/nishant-gangwar-904937287/">LinkedIn</a>
+        <a href="https://x.com/nishaaaaanttttt">X / Twitter</a>
       </div>
-    </div>
+    </section>
 
-    <footer>
-      <span class="path">~/nishant625</span> <span class="dim">$</span> echo "thanks for stopping by"<span class="cursor"></span>
-    </footer>
+  </main>
 
-  </div>
+  <footer>nishant625 · India</footer>
+
 </div>
-
-<script>
-  const bootLines = [
-    "[ OK ] Booting nishant625.github.io ...",
-    "[ OK ] Mounting /dev/portfolio ...",
-    "[ OK ] Loading user profile: nishant625",
-    "[ OK ] Starting session... welcome."
-  ];
-
-  const bootEl = document.getElementById('boot');
-  let delay = 0;
-  bootLines.forEach((text, i) => {
-    const p = document.createElement('p');
-    p.className = 'line';
-    p.textContent = text;
-    p.style.animationDelay = delay + 's';
-    bootEl.appendChild(p);
-    delay += 0.25;
-  });
-</script>
 </body>
 </html>
