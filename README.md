@@ -16,4 +16,3 @@ Hi, I'm Nishant Gangwar, an engineer building production AI systems for banks an
 
 ### Projects
 * [Sentinel](https://github.com/nishant625/sentinel): OAuth2 + PKCE authentication server with Node.js and React SDKs
-* (add the RAG repo here once it's pushed)
